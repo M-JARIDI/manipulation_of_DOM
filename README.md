@@ -5,38 +5,51 @@
 	document.getElementById();
 	document.getElementsByClassName();
 	document.getElementsByTagName();
-	document.querySelector(); // renvoie le premier element trouvé
-	document.querySelectorAll(); // renvoie toutes les éléments trouvés
-	element.children
+	// renvoie le premier element trouvé
+	document.querySelector();
+	// renvoie toutes les éléments trouvés
+	document.querySelectorAll();
 	// cette propriété nous retourne la liste des enfants de cet élément ;
-	element.parentElement
+	element.children
 	// cette propriété nous retourne l'élément parent de celui-ci ;
+	element.parentElement
+	/* ces propriétés nous permettent de naviguer vers l'élément
+	   suivant/précédent de même niveau que notre élément. */
 	element.nextElementSibling | element.previousElementSibling
-	// ces propriétés nous permettent de naviguer vers l'élément
-	   suivant / précédent de même niveau que notre élément.
+	
 
 
 ### Pour modifier le contenu d'un élément, on a les propriètés suivantes : 
 	- innerHTML : demande à ce que vous entriez du texte représentant un contenu HTML.
-		Par exemple :  "<p>Voici un exemple de contenu pour <strong>innerHTML</strong></p>"
+		Par exemple : "<p>Voici un exemple de contenu pour <strong>innerHTML</strong></p>"
 	- textContent : demande un simple texte qui ne sera pas interprété comme étant du HTML.
 
 ### Pour modifier les classes (let elt = document.getElementById('main');) :
-	elt.classList.add("nouvelleClasse");    // Ajoute la classe nouvelleClasse à l'élément
-	elt.classList.remove("nouvelleClasse"); // Supprime la classe nouvelleClasse que l'on venait d'ajouter
-	elt.classList.contains("nouvelleClasse");   // Retournera false car on vient de la supprimer
-	elt.classList.replace("oldClass", "newClass"): // Remplacera oldClass par newClass si oldClass 
-		était présente sur l'élément
+	// Ajoute la classe nouvelleClasse à l'élément
+	elt.classList.add("nouvelleClasse");
+	// Supprime la classe nouvelleClasse que l'on venait d'ajouter
+	elt.classList.remove("nouvelleClasse");
+	// Retournera false car on vient de la supprimer
+	elt.classList.contains("nouvelleClasse");
+	// Remplacera oldClass par newClass si oldClass était présente sur l'élément
+	elt.classList.replace("oldClass", "newClass"): 
+		
 
 ### Changez les styles d'un élément :
-	elt.style.color = "#fff";      // Change la couleur du texte de l'élément à blanche
-	elt.style.backgroundColor = "#000"; // Change la couleur de fond de l'élément en noir
-	elt.style.fontWeight = "bold"; // Met le texte de l'élément en gras
+	// Change la couleur du texte de l'élément à blanche
+	elt.style.color = "#fff";
+	// Change la couleur de fond de l'élément en noir
+	elt.style.backgroundColor = "#000";
+	// Met le texte de l'élément en gras
+	elt.style.fontWeight = "bold";
 
 ### Modifiez les attributs (elt  faisant référence à un élément de type  input par exmp) :
-	elt.setAttribute("type", "password");   // Change le type de l'input en un type password
-	elt.setAttribute("name", "my-password");    // Change le nom de l'input en my-password
-	elt.getAttribute("name");               // Retourne my-password
+	// Change le type de l'input en un type password
+	elt.setAttribute("type", "password");
+	// Change le nom de l'input en my-password
+	elt.setAttribute("name", "my-password");
+	// Retourne my-password
+	elt.getAttribute("name");
 	//elt.removeAttribute(nom_attribute);
 	//elt.hasAttribute(nom_attribute);
 
@@ -58,27 +71,35 @@
 	let elt = document.getElementById("main");
 	elt.appendChild(newElt);
 
-	elt.removeChild(newElt);    // Supprime l'élément newElt de l'élément elt
-	elt.replaceChild(document.createElement("article"), newElt);
+	// Supprime l'élément newElt de l'élément elt
+	elt.removeChild(newElt);
 	// Remplace l'élément newElt par un nouvel élément de type article
-
+	elt.replaceChild(document.createElement("article"), newElt);
+	
 
 ### Réagissez lors d'un clic sur élément :
 	la fonction addEventListener(<event>, <callback>)
 	exemple :
-		const elt = document.getElementById('mon-lien'); // On récupère l'élément sur lequel on veut détecter le clic
-		elt.addEventListener('click', function() { // On écoute l'événement click
-  		elt.innerHTML = "C'est cliqué !";// On change le contenu de notre élément pour afficher "C'est cliqué !"
+		// On récupère l'élément sur lequel on veut détecter le clic
+		const elt = document.getElementById('mon-lien');
+		
+		elt.addEventListener('click', function() { 
+  		elt.innerHTML = "C'est cliqué !";
 		});
 
-	preventDefault()
+	la fonction preventDefault()
 	exemple :
-		const elt = document.getElementById('mon-lien'); // On récupère l'élément sur lequel on veut détecter le clic
-		elt.addEventListener('click', function(event) { // On écoute l'événement click, notre callback prend un paramètre que nous avons appelé event ici
-    		event.preventDefault(); // On utilise la fonction preventDefault de notre objet event pour empêcher le comportement par défaut de cet élément lors du clic de la souris
+		const elt = document.getElementById('mon-lien');
+		/* On écoute l'événement click, notre callback prend
+		   un paramètre que nous avons appelé event ici */
+		elt.addEventListener('click', function(event) {
+		/* On utilise la fonction preventDefault de notre objet event pour empêcher
+		   le comportement par défaut de cet élément lors du clic de la souris */
+    		event.preventDefault(); 
 		});
 
-	stopPropagation() , vous pouvez ainsi empêcher que d'autres éléments (les parents) reçoivent l'événement.
+	la fontion stopPropagation() : vous pouvez ainsi empêcher que d'autres
+	éléments (les parents) reçoivent l'événement.
 	exemple :
 		elementInterieur.addEventListener('click', function(event) {
     		event.stopPropagation();
@@ -89,11 +110,13 @@
 ### Détectez le mouvement de la souris :
 	exemple :
 		elt.addEventListener('mousemove', function(event) {
-    		const x = event.offsetX; // Coordonnée X de la souris dans l'élément
-  		const y = event.offsetY; // Coordonnée Y de la souris dans l'élément
+    		// Coordonnée X de la souris dans l'élément
+			const x = event.offsetX;
+			// Coordonnée Y de la souris dans l'élément
+  			const y = event.offsetY;
 		});
 	
-####  /! \à ne pas oublier les deux événements 'onInput' et 'onChange' d'un champ de texte. 
+####  /!\ à ne pas oublier les deux événements 'onInput' et 'onChange' d'un champ de texte. 
 	myInput.addEventListener('input', function(e) {} // en temps réel
 	myInput.addEventListener('change', function(e) {} // après perdre le focus
 
@@ -155,23 +178,26 @@
 	-> Réponse : par ce qu'on appelle "l'event Loop".
 		En JavaScript, chaque ligne de code est exécutée de façon synchrone,
 		mais il est possible de demander à exécuter du code de manière asynchrone.
-		Et lorsque l'on demande à exécuter une fonction de façon asynchrone, la fonction en question est placée
-		dans une sorte de file d'attente qui va exécuter toutes les fonctions qu'elle contient les unes
+		Et lorsque l'on demande à exécuter une fonction de façon asynchrone,
+		la fonction en question est placée dans une sorte de file d'attente qui
+		va exécuter toutes les fonctions qu'elle contient les unes
 		après les autres. C'est ce qu'on appelle l'event loop.
 
 ## comment demander à exécuter du code de manière asynchrone ?
-	-> Réponse : - la fonction setTimeOut(nom_function, délai) // délai en millisecondes, avant d'exécuter cette fonction.
-				À retarder l'exécution d'une fonction du temps indiqué
-		    - la fonction setInterval(...) : elle exécute la fonction passée en paramètre en boucle à une fréquence
-			  déterminée par le temps en millisecondes passé en second paramètre.
+	-> Réponse : - la fonction setTimeOut(nom_function, délai) :
+					 (délai en millisecondes,avant d'exécuter cette fonction)
+					À retarder l'exécution d'une fonction du temps indiqué
+		    - la fonction setInterval(...) : elle exécute la fonction passée en paramètre
+			en boucle à une fréquence déterminée par le temps en millisecondes passé en second paramètre.
 # Remarque :
-	tout ce qui touche à l'I/O peut être exécuté de manière asynchrone (la lecture/écriture des fichiers, aux requêtes HTTP, ...).
+	tout ce qui touche à l'I/O peut être exécuté de manière asynchrone (la lecture/écriture des
+	fichiers, aux requêtes HTTP, ...).
 
 
 ### comment on peut exécuter du code asynchrone et renvoyer le résultat que l'on souhaite à celui qui a lancé le code ?
 	- les fonctions de CallBack : Les callbacks sont la base de l'asynchrone en JavaScript et sont très utilisées.
-		Remarque : C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que tout se soit bien passé.
-		Il nous faut donc un mécanisme pour savoir si une erreur est survenue
+		Remarque : C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que 
+		tout se soit bien passé. Il nous faut donc un mécanisme pour savoir si une erreur est survenue
 			  d'où le rôle de la gestion des erreurs.
 			Exemple :
 				fs.readFile(filePath, function(err, data) {
@@ -236,6 +262,6 @@
 
 ### Optimisez votre code par Linter, minifier, bundler et transpiler :
 	
-	bundler (exp : webpack) : il va vous permettre de compiler votre code et de tout packager en un seul fichier
+  bundler (exp : webpack): il va vous permettre de compiler votre code et de tout packager en un seul fichier
 
 
