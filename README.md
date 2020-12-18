@@ -21,7 +21,7 @@
 
 ### Pour modifier le contenu d'un élément, on a les propriètés suivantes : 
 	- innerHTML : demande à ce que vous entriez du texte représentant un contenu HTML.
-		Par ***Exemple : *** "<p>Voici un de contenu pour <strong>innerHTML</strong></p>"
+		Par ***Exemple :*** "<p>Voici un de contenu pour <strong>innerHTML</strong></p>"
 	- textContent : demande un simple texte qui ne sera pas interprété comme étant du HTML.
 
 ### Pour modifier les classes :
@@ -58,7 +58,7 @@
 
 ### Créez de nouveaux éléments :
 	const newElt = document.createElement("div");
-**Remarque : **
+***Remarque :***
 	Un élément créé avec cette fonction ne fait pas encore partie du document,
 	vous ne le verrez donc pas sur votre page. Pour le voir,
 	il va d'abord falloir l'ajouter en tant qu'enfant à un élément.
@@ -82,7 +82,7 @@
 
 ### Réagissez lors d'un clic sur élément :
 	la fonction addEventListener(<event>, <callback>)
-	***Exemple : ***
+	***Exemple :***
 		// On récupère l'élément sur lequel on veut détecter le clic
 		const elt = document.getElementById('mon-lien');
 		
@@ -91,7 +91,7 @@
 		});
 
 	la fonction preventDefault()
-	***Exemple : ***
+	***Exemple :***
 		const elt = document.getElementById('mon-lien');
 		/* On écoute l'événement click, notre callback prend
 		   un paramètre que nous avons appelé event ici */
@@ -103,7 +103,7 @@
 
 	la fontion stopPropagation() : vous pouvez ainsi empêcher que d'autres
 	éléments (les parents) reçoivent l'événement.
-	***Exemple : ***
+	***Exemple :***
 		elementInterieur.addEventListener('click', function(event) {
     		event.stopPropagation();
   		elementAvecMessage.innerHTML = "Message de l'élément intérieur";
@@ -111,7 +111,7 @@
 	
 	
 ### Détectez le mouvement de la souris :
-	***Exemple : ***
+	***Exemple :***
 		elt.addEventListener('mousemove', function(event) {
     		// Coordonnée X de la souris dans l'élément
 			const x = event.offsetX;
@@ -157,7 +157,7 @@
 		});
 - Faites une validation plus complexe avec les Regex : il s'agit d'un format spécial qui permet
 	   de matcher du texte, c'est-à-dire de vérifier qu'un texte corresponde à une description que l'on a définie.
-		***Exemple : *** si l'on veut savoir si notre texte commence par la lettre  e  et est suivi d'au moins 3 chiffres,
+		***Exemple :*** si l'on veut savoir si notre texte commence par la lettre  e  et est suivi d'au moins 3 chiffres,
 		on écrira la regex suivante :
 		 
 			function isValid(value) {
@@ -171,7 +171,7 @@
 		<input type="text" pattern="[0-9]{,3}" />
 
 - Envoyez des données avec une requête POST
-	***Exemple : ***
+	***Exemple :***
 		var request = new XMLHttpRequest();
 		request.open("POST", "http://url-service-web.com/api/users");
 		request.setRequestHeader("Content-Type", "application/json");
@@ -194,17 +194,17 @@
 		À retarder l'exécution d'une fonction du temps indiqué
 	- la fonction setInterval(...) : elle exécute la fonction passée en paramètre
 		en boucle à une fréquence déterminée par le temps en millisecondes passé en second paramètre.
-# **Remarque : **
+# ***Remarque :***
 	tout ce qui touche à l'I/O peut être exécuté de manière asynchrone (la lecture/écriture des
 	fichiers, aux requêtes HTTP, ...).
 
 
 ### comment on peut exécuter du code asynchrone et renvoyer le résultat que l'on souhaite à celui qui a lancé le code ?
 - les fonctions de CallBack : Les callbacks sont la base de l'asynchrone en JavaScript et sont très utilisées.
-		**Remarque : ** C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que 
+		***Remarque :*** C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que 
 		tout se soit bien passé. Il nous faut donc un mécanisme pour savoir si une erreur est survenue
 			  d'où le rôle de la gestion des erreurs.
-			***Exemple : ***
+			***Exemple :***
 				fs.readFile(filePath, function(err, data) {
    					 if (err) {
         						throw err;
@@ -213,7 +213,7 @@
 					});
 - Les promises : (sont faciles à lire par rapport les CallBacks) : Cette promesse est en fait un objet
 	  Promise qui peut être  "resolve"  avec un résultat, ou  "reject"  avec une erreur.	
-		***Exemple : ***
+		***Exemple :***
 			functionThatReturnsAPromise()
    	 			.then(function(data) {
         					// Do somthing with data 
@@ -221,7 +221,7 @@
     				.catch(function(err) {
        					 // Do something with error
     			});
-#### **Remarque : ** Le gros avantage est que l'on peut aussi chaîner les  Promises
+#### ***Remarque :*** Le gros avantage est que l'on peut aussi chaîner les  Promises
 		exmple :
 			returnAPromiseWithNumber2()
     				.then(function(data) { // Data is 2
@@ -243,7 +243,7 @@
 	- Async/Await : permettent de gérer le code asynchrone de manière beaucoup plus intuitive,
 					en bloquant l'exécution d'un code asynchrone
 					jusqu'à ce qu'il retourne un résultat.
-		***Exemple : ***
+		***Exemple :***
 			async function fonctionAsynchrone1() {/* code asynchrone */}
 			async function fonctionAsynchrone2() {/* code asynchrone */}
 
@@ -261,7 +261,7 @@
 
 
 ### Parallélisez plusieurs requêtes HTTP : comment enchaîner les requêtes HTTP ?
-	***Exemple : *** enchaîner les requêtes HTTP en exécutant 2 requêtes GET en même temps (en parallèle),
+	***Exemple :*** enchaîner les requêtes HTTP en exécutant 2 requêtes GET en même temps (en parallèle),
 			  puis 1 requête POSTune fois que les 2 requêtes précédentes sont terminées (en séquence).
 	- Enchaînez des requêtes avec les callbacks
 	- Enchaînez des requêtes avec les Promises
