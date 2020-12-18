@@ -21,10 +21,11 @@
 
 ### Pour modifier le contenu d'un élément, on a les propriètés suivantes : 
 	- innerHTML : demande à ce que vous entriez du texte représentant un contenu HTML.
-		Par exemple : "<p>Voici un exemple de contenu pour <strong>innerHTML</strong></p>"
+		Par ***Exemple : *** "<p>Voici un de contenu pour <strong>innerHTML</strong></p>"
 	- textContent : demande un simple texte qui ne sera pas interprété comme étant du HTML.
 
-### Pour modifier les classes (let elt = document.getElementById('main');) :
+### Pour modifier les classes :
+	let elt = document.getElementById('main');
 	// Ajoute la classe nouvelleClasse à l'élément
 	elt.classList.add("nouvelleClasse");
 	// Supprime la classe nouvelleClasse que l'on venait d'ajouter
@@ -43,7 +44,9 @@
 	// Met le texte de l'élément en gras
 	elt.style.fontWeight = "bold";
 
-### Modifiez les attributs (elt  faisant référence à un élément de type  input par exmp) :
+### Modifiez les attributs :
+	// elt  faisant référence à un élément de type  input par exmp
+	document.getElementById("elt");
 	// Change le type de l'input en un type password
 	elt.setAttribute("type", "password");
 	// Change le nom de l'input en my-password
@@ -55,10 +58,10 @@
 
 ### Créez de nouveaux éléments :
 	const newElt = document.createElement("div");
-	Remarque :
-		Un élément créé avec cette fonction ne fait pas encore partie du document,
-		vous ne le verrez donc pas sur votre page. Pour le voir,
-		il va d'abord falloir l'ajouter en tant qu'enfant à un élément.
+**Remarque : **
+	Un élément créé avec cette fonction ne fait pas encore partie du document,
+	vous ne le verrez donc pas sur votre page. Pour le voir,
+	il va d'abord falloir l'ajouter en tant qu'enfant à un élément.
 
 
 ### Ajoutez des enfants :
@@ -79,7 +82,7 @@
 
 ### Réagissez lors d'un clic sur élément :
 	la fonction addEventListener(<event>, <callback>)
-	exemple :
+	***Exemple : ***
 		// On récupère l'élément sur lequel on veut détecter le clic
 		const elt = document.getElementById('mon-lien');
 		
@@ -88,7 +91,7 @@
 		});
 
 	la fonction preventDefault()
-	exemple :
+	***Exemple : ***
 		const elt = document.getElementById('mon-lien');
 		/* On écoute l'événement click, notre callback prend
 		   un paramètre que nous avons appelé event ici */
@@ -100,7 +103,7 @@
 
 	la fontion stopPropagation() : vous pouvez ainsi empêcher que d'autres
 	éléments (les parents) reçoivent l'événement.
-	exemple :
+	***Exemple : ***
 		elementInterieur.addEventListener('click', function(event) {
     		event.stopPropagation();
   		elementAvecMessage.innerHTML = "Message de l'élément intérieur";
@@ -108,7 +111,7 @@
 	
 	
 ### Détectez le mouvement de la souris :
-	exemple :
+	***Exemple : ***
 		elt.addEventListener('mousemove', function(event) {
     		// Coordonnée X de la souris dans l'élément
 			const x = event.offsetX;
@@ -125,12 +128,12 @@
 	Il s'agit d'un ensemble d'objets et de fonctions mis à disposition par le langage JavaScript,
 	afin d'exécuter des requêtes HTTP de manière asynchrone.
 
-- Construitre et envoyer une première requête HTTP avec AJAX :
+### Construitre et envoyer une première requête HTTP avec AJAX :
 	var request = new XMLHttpRequest();
 	request.open("GET", "http://url-service-web.com/api/users");
 	request.send();
 
-- Récupérez le résultat de la requête :
+### Récupérez le résultat de la requête :
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
     		if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -141,9 +144,9 @@
 	request.open("GET", "https://www.prevision-meteo.ch/services/json/paris");
 	request.send();
 
-- Validez les données saisies par vos utilisateurs :
-	-> Never trust user input!
-	-> Validez les données suite à des événements
+### Validez les données saisies par vos utilisateurs :
+- Never trust user input!
+- Validez les données suite à des événements
 		myInput.addEventListener('input', function(e) {
     		var value = e.target.value;
    		 if (value.startsWith('Hello ')) {
@@ -152,22 +155,23 @@
        			 isValid = false;
     		          }
 		});
-	-> Faites une validation plus complexe avec les Regex : il s'agit d'un format spécial qui permet
+- Faites une validation plus complexe avec les Regex : il s'agit d'un format spécial qui permet
 	   de matcher du texte, c'est-à-dire de vérifier qu'un texte corresponde à une description que l'on a définie.
-		exemple : si l'on veut savoir si notre texte commence par la lettre  e  et est suivi d'au moins 3 chiffres,
-		on écrira la regex suivante :  
+		***Exemple : *** si l'on veut savoir si notre texte commence par la lettre  e  et est suivi d'au moins 3 chiffres,
+		on écrira la regex suivante :
+		 
 			function isValid(value) {
    				 return /^e[0-9]{3,}$/.test(value);
 			}
 
-- Découvrez les contraintes HTML5 :
-	-> L'attribut type pour les inputs : text, password; email, tel, URL, date ...
-	-> Les  attributs de validation simples : min/max, required, step, minlength/maxlength ...
-	-> L'attribut pattern : Il suffit de définir une Regex dans cet attribut, et vous obligez la valeur du champ correspondant à la respecter.
+- Découvrez les contraintes HTML5
+	- L'attribut type pour les inputs : text, password; email, tel, URL, date ...
+	- Les  attributs de validation simples : min/max, required, step, minlength/maxlength ...
+	- L'attribut pattern : Il suffit de définir une Regex dans cet attribut, et vous obligez la valeur du champ correspondant à la respecter.
 		<input type="text" pattern="[0-9]{,3}" />
 
-- Envoyez des données avec une requête POST :
-	exemple :
+- Envoyez des données avec une requête POST
+	***Exemple : ***
 		var request = new XMLHttpRequest();
 		request.open("POST", "http://url-service-web.com/api/users");
 		request.setRequestHeader("Content-Type", "application/json");
@@ -184,31 +188,32 @@
 		après les autres. C'est ce qu'on appelle l'event loop.
 
 ## comment demander à exécuter du code de manière asynchrone ?
-	-> Réponse : - la fonction setTimeOut(nom_function, délai) :
-					 (délai en millisecondes,avant d'exécuter cette fonction)
-					À retarder l'exécution d'une fonction du temps indiqué
-		    - la fonction setInterval(...) : elle exécute la fonction passée en paramètre
-			en boucle à une fréquence déterminée par le temps en millisecondes passé en second paramètre.
-# Remarque :
+	-> Réponse :
+	- la fonction setTimeOut(nom_function, délai) :
+		(délai en millisecondes,avant d'exécuter cette fonction)
+		À retarder l'exécution d'une fonction du temps indiqué
+	- la fonction setInterval(...) : elle exécute la fonction passée en paramètre
+		en boucle à une fréquence déterminée par le temps en millisecondes passé en second paramètre.
+# **Remarque : **
 	tout ce qui touche à l'I/O peut être exécuté de manière asynchrone (la lecture/écriture des
 	fichiers, aux requêtes HTTP, ...).
 
 
 ### comment on peut exécuter du code asynchrone et renvoyer le résultat que l'on souhaite à celui qui a lancé le code ?
-	- les fonctions de CallBack : Les callbacks sont la base de l'asynchrone en JavaScript et sont très utilisées.
-		Remarque : C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que 
+- les fonctions de CallBack : Les callbacks sont la base de l'asynchrone en JavaScript et sont très utilisées.
+		**Remarque : ** C'est bien beau de gérer du code asynchrone, mais rien ne vous garantit que 
 		tout se soit bien passé. Il nous faut donc un mécanisme pour savoir si une erreur est survenue
 			  d'où le rôle de la gestion des erreurs.
-			Exemple :
+			***Exemple : ***
 				fs.readFile(filePath, function(err, data) {
    					 if (err) {
         						throw err;
     					}
     					// Do something with data
 					});
-	- Les promises : (sont faciles à lire par rapport les CallBacks) : Cette promesse est en fait un objet
+- Les promises : (sont faciles à lire par rapport les CallBacks) : Cette promesse est en fait un objet
 	  Promise qui peut être  "resolve"  avec un résultat, ou  "reject"  avec une erreur.	
-		exemple :
+		***Exemple : ***
 			functionThatReturnsAPromise()
    	 			.then(function(data) {
         					// Do somthing with data 
@@ -216,7 +221,7 @@
     				.catch(function(err) {
        					 // Do something with error
     			});
-#### Remarque : Le gros avantage est que l'on peut aussi chaîner les  Promises
+#### **Remarque : ** Le gros avantage est que l'on peut aussi chaîner les  Promises
 		exmple :
 			returnAPromiseWithNumber2()
     				.then(function(data) { // Data is 2
@@ -236,8 +241,9 @@
    				 });
 
 	- Async/Await : permettent de gérer le code asynchrone de manière beaucoup plus intuitive,
-					en bloquant l'exécution d'un code asynchrone jusqu'à ce qu'il retourne un résultat.
-		exemple :
+					en bloquant l'exécution d'un code asynchrone
+					jusqu'à ce qu'il retourne un résultat.
+		***Exemple : ***
 			async function fonctionAsynchrone1() {/* code asynchrone */}
 			async function fonctionAsynchrone2() {/* code asynchrone */}
 
@@ -246,19 +252,20 @@
  				const value2 = await fonctionAsynchrone2();
  				return value1 + value2;
 			}
-		Remarque 1 : utilisent les Promises en arrière-plan, il est donc possible d'utiliser les 2 en même temps.
+		**Remarque 1** : utilisent les Promises en arrière-plan, il est donc possible 
+		d'utiliser les 2 en même temps.
 		Gestion des erreurs : il suffit d'exécuter notre code asynchrone dans un bloc  try {} catch (e) {} ,
 		l'erreur étant envoyée dans le catch.
-		Remarque 2 : async  et  await  sont des mots clés du langage JavaScript,
+		**Remarque 2** : async  et  await  sont des mots clés du langage JavaScript,
 		qui permettent de créer du code asynchrone qui utilisera les  Promise  en arrière-plan.
 
 
 ### Parallélisez plusieurs requêtes HTTP : comment enchaîner les requêtes HTTP ?
-	exemple : enchaîner les requêtes HTTP en exécutant 2 requêtes GET en même temps (en parallèle),
+	***Exemple : *** enchaîner les requêtes HTTP en exécutant 2 requêtes GET en même temps (en parallèle),
 			  puis 1 requête POSTune fois que les 2 requêtes précédentes sont terminées (en séquence).
-	-> Enchaînez des requêtes avec les callbacks
-	-> Enchaînez des requêtes avec les Promises
-	-> Enchaînez des requêtes avec async/await
+	- Enchaînez des requêtes avec les callbacks
+	- Enchaînez des requêtes avec les Promises
+	- Enchaînez des requêtes avec async/await
 
 ### Optimisez votre code par Linter, minifier, bundler et transpiler :
 	
